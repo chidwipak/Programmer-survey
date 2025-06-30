@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Professional Programmer Survey</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/submissions">View Submissions</a>
+      </nav>
+    </header>
+    
+    <main>
+      <% if (locals.error) { %>
+        <div class="error-message">
+          <%= error %>
+        </div>
+      <% } %>
+      
+      <form action="/submit-survey" method="POST" class="survey-form">
+        <h2>Take the Survey</h2>
+        
+        <!-- Name field -->
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <!-- Gender field -->
+        <div class="form-group">
+          <label>Gender:</label>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="gender" value="Female" required>
+              Female
+            </label>
+            <label>
+              <input type="radio" name="gender" value="Male">
+              Male
+            </label>
+            <label>
+              <input type="radio" name="gender" value="Transgender">
+              Transgender
+            </label>
+          </div>
+        </div>
+        
+        <!-- Age field -->
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" min="1" required>
+        </div>
+        
+        <!-- Coding years field -->
+        <div class="form-group">
+          <label for="codingYears">Including any education, for how many years have you been coding?</label>
+          <input type="number" id="codingYears" name="codingYears" min="0" required>
+        </div>
+        
+        <!-- Industry field -->
+        <div class="form-group">
+          <label for="industry">Which industry do you work in?</label>
+          <input type="text" id="industry" name="industry" required>
+        </div>
+        
+        <!-- Open source contribution field -->
+        <div class="form-group">
+          <label>Do you contribute to open source projects?</label>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="opensourceContribution" value="yes" required>
+              Yes
+            </label>
+            <label>
+              <input type="radio" name="opensourceContribution" value="no">
+              No
+            </label>
+          </div>
+        </div>
+        
+        <!-- Version control field -->
+        <div class="form-group">
+          <label for="versionControl">What version control systems do you use regularly?</label>
+          <input type="text" id="versionControl" name="versionControl" required>
+          <small>Example: Git, SVN, Mercurial, or company's own</small>
+        </div>
+        
+        <!-- Development tools field -->
+        <div class="form-group">
+          <label for="developmentTools">Tools your company uses for development?</label>
+          <input type="text" id="developmentTools" name="developmentTools" required>
+          <small>Example: OS, Database, Cloud, main language</small>
+        </div>
+        
+        <!-- Study hours field -->
+        <div class="form-group">
+          <label for="studyHours">How many hours do you still study?</label>
+          <input type="text" id="studyHours" name="studyHours" required>
+          <small>Example: 3-4 hours per day/week</small>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Submit Survey</button>
+          <button type="reset" class="btn secondary">Reset Form</button>
+        </div>
+      </form>
+    </main>
+    
+    <footer>
+      <p>&copy; <%= new Date().getFullYear() %> Professional Programmer Survey</p>
+    </footer>
+  </div>
+</body>
+</html>

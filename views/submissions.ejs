@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Survey Submissions</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/survey">Take Survey</a>
+      </nav>
+    </header>
+    
+    <main>
+      <% if (locals.error) { %>
+        <div class="error-message">
+          <%= error %>
+        </div>
+      <% } %>
+      
+      <section class="submissions">
+        <h2>All Survey Submissions</h2>
+        
+        <% if (submissions.length === 0) { %>
+          <p class="no-data">No submissions yet. Be the first to take the survey!</p>
+        <% } else { %>
+          <div class="table-responsive">
+            <table class="submissions-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>Age</th>
+                  <th>Coding Years</th>
+                  <th>Industry</th>
+                  <th>Open Source</th>
+                  <th>Version Control</th>
+                  <th>Development Tools</th>
+                  <th>Study Hours</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% submissions.forEach(submission => { %>
+                  <tr>
+                    <td><%= submission.timestamp.toLocaleString() %></td>
+                    <td><%= submission.name %></td>
+                    <td><%= submission.gender %></td>
+                    <td><%= submission.age %></td>
+                    <td><%= submission.codingYears %></td>
+                    <td><%= submission.industry %></td>
+                    <td><%= submission.opensourceContribution ? 'Yes' : 'No' %></td>
+                    <td><%= submission.versionControl %></td>
+                    <td><%= submission.developmentTools %></td>
+                    <td><%= submission.studyHours %></td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        <% } %>
+      </section>
+    </main>
+    
+    <footer>
+      <p>&copy; <%= new Date().getFullYear() %> Professional Programmer Survey</p>
+    </footer>
+  </div>
+</body>
+</html>
